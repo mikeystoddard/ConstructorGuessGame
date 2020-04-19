@@ -1,4 +1,6 @@
-#Constructor-Word-Guess In this unit's assignment, you will create a Word Guess command-line game using constructor functions. This game uses constructors and two required files. It's a command line game that has you guess letters to randomly-selected hidden words.
+Constructor-Word-Guess 
+
+In this unit's assignment, you will create a Word Guess command-line game using constructor functions. This game uses constructors and two required files. It's a command line game that has you guess letters to randomly-selected hidden words.
 
 Instructions:
 
