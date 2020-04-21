@@ -4,15 +4,15 @@ var words;
 var disneyGuess;
 var guesses;
 var randomWord;
+var guessedWord;
 
-var disney = ["Simba", "Ariel", "Aladdin", "Hercules", "Scar", "Mufasa", "Ursula", "Jasmine", "Jafar", "Rajah", "Iago", "Phil"
-];
+var disney = ["Simba", "Ariel", "Aladdin", "Hercules", "Scar", "Mufasa", "Ursula", "Jasmine", "Jafar", "Rajah", "Iago", "Phil"];
 
 function start() {
     disneyGuess = [];
     console.log("Guess a Disney Character!");
     console.log("\n----------------\n");
-    start();
+    startGame();
 }
 
 function startGame() {
@@ -22,13 +22,14 @@ function startGame() {
         randomWord = newWord();
     } else {
         console.log("You are correct");
-        continuePrompt();
+        start();
     }
     if (randomWord) {
         words = new Word(randomWord);
         words.buildWord();
-        userGuess();
+        userInput();
     }
+    console.log("random word", randomWord)
 }
 
 function newWord() {
@@ -44,33 +45,33 @@ function newWord() {
 
 function userInput() {
     var check = [];
-    inquirer.prompt([
-        {
+    inquirer.prompt([{
             type: "input",
             message: "Select a letter!",
             name: "userinput",
-        }
-    ])
+        }])
         .then(data => {
+            //console.log(data.userinput);
             words.letterArray.forEach(letter => {
-                letter.guess(data.letterGuessed);
+                letter.guess(data.userinput);
                 check.push(letter.toString());
+                //console.log("check", check);
             });
 
             if (guesses > 0 && check.indexOf("_") !== -1) {
-        guesses--;
-            if (guesses === 0) {
-        console.log("Sorry game over");
-        continuePrompt();
-    } else {
-        userInput();
-    }
-        }  else {
-    console.log("You won!");
-    console.log(words.display());
-    startGame();
-}
-});
+                guesses--;
+                if (guesses === 0) {
+                    console.log("Sorry game over");
+                    start();
+                } else {
+                    userInput();
+                }
+            } else {
+                console.log("You won!");
+                console.log(words.display());
+                start();
+            }
+        });
 }
 
 start();

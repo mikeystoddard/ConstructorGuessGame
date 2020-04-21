@@ -10,6 +10,9 @@ this.buildWord = function () {
     var letter = new Letter(words[i]);
     this.letterArray.push(letter);
   }
+  this.display = function () {
+      console.log("trying to display word", this.letterArray.join(""));
+  }
 
   this.guess = function () {
     guessLog = "";
@@ -22,6 +25,7 @@ this.buildWord = function () {
   this.userInput = function (input) {
     for (var i = 0; i < this.letterArray.length; i++) {
       this.letterArray[i].guess(input);
+      console.log(this.letterArray[i])
     }
   };
 }
