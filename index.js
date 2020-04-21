@@ -1,3 +1,5 @@
+// worked with tutor to get this fully functional but not quite there
+// Meeting with tutor again to complete - the flow isn't as smooth as I would like
 var Word = require("./word.js");
 var inquirer = require("inquirer");
 var words;
