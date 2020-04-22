@@ -6,7 +6,6 @@ var words;
 var disneyGuess;
 var guesses;
 var randomWord;
-var guessedWord;
 
 var disney = ["Simba", "Ariel", "Aladdin", "Hercules", "Scar", "Mufasa", "Ursula", "Jasmine", "Jafar", "Rajah", "Iago", "Phil"];
 
@@ -24,7 +23,7 @@ function startGame() {
         randomWord = newWord();
     } else {
         console.log("You are correct");
-        start();
+        playAgain();
     }
     if (randomWord) {
         words = new Word(randomWord);
@@ -63,17 +62,38 @@ function userInput() {
             if (guesses > 0 && check.indexOf("_") !== -1) {
                 guesses--;
                 if (guesses === 0) {
+                    console.log("No more guesses left! \n");
                     console.log("Sorry game over");
-                    start();
+                    playAgain();
                 } else {
+                    //Additional Console to prinout word and remaining guesses
+                    // console.log("Correct Letter Guessed: " + check.join("") + "!!\n");
+                    console.log(guesses + " guesses remaining!!!\n");
                     userInput();
                 }
             } else {
                 console.log("You won!");
                 console.log(words.display());
-                start();
+                playAgain();
             }
         });
+}
+function playAgain () {
+    inquirer.prompt([{
+        type: "confirm",
+        message: "Would you like to play again?",
+        name: "userinput",
+    }])
+    .then(data => {
+    if (data.userInput) {
+        start();
+    } 
+    else {
+        console.log("Thank you for playing!\n")
+        process.exit(0)
+    }
+
+    })
 }
 
 start();

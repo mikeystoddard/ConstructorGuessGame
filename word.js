@@ -6,12 +6,12 @@ function Word (words) {
 
 
 this.buildWord = function () {
-  for (var i = 0; i < words.length; i++) 
+  for (var i = 0; i < words.length; i++) {
     var letter = new Letter(words[i]);
     this.letterArray.push(letter);
-  }
+  }}
   this.display = function () {
-      console.log("trying to display word", this.letterArray.join(""));
+      console.log("Disney Character: ", this.letterArray.join(""));
   }
 
   this.guess = function () {
